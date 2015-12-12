@@ -1,0 +1,208 @@
+.home-page {
+
+  // Global Post
+  .post {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted $lightGreyColor;
+    .post-top-info {
+      position: relative;
+      .user-pic {
+        a {
+          background-image:url('../../assets/pictures/users/default-user.jpg');
+        }
+      }
+      .post-thumbnail {
+        float: left;
+        width: 40px;
+        height: 40px;
+        a {
+          background-size: cover;
+          background-position: 50% 50%;
+          width: 100%;
+          height: 100%;
+          display: block;
+          border-radius: 50%;
+          border: 2px solid $mainColor;
+        }
+      }
+      .post-top-details {
+        float: left;
+        padding-left: 10px;
+        .post-title {}
+        .post-subdetails{
+          .subdetail {
+            &.time {}
+          }
+        }
+      }
+    }
+    .post-content {
+      margin-top: 10px;
+      .developer-pic {
+        background-image:url('../../assets/pictures/users/default-user.jpg');
+      }
+      .description {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  // User Project Post Model
+  .user-project-post {
+    .post-top-info {
+      .post-top-details {
+        .user-name {
+          a {
+            font-weight: bold;
+            color: $darkGreyColor;
+          }
+        }
+      }
+    }
+    .post-content {
+      .description {
+        .project-link {
+          font-weight: bold;
+        }
+      }
+      .project-picture-container {
+        height: 500px;
+        .project-picture {
+          background-size: cover;
+          background-position: 50% 50%;
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+
+  // Highlighted Project Post Model
+  .highlight-project-post {
+    .post-top-info {
+      .highlight-pic {
+        a {
+          border-radius: 0;
+        }
+      }
+      .post-top-details {
+        .post-subdetails {
+          .subdetail {
+            .star {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+    .post-content {
+      .description {
+        margin-bottom: 10px;
+        .project-link {
+          font-weight: bold;
+        }
+      }
+      .project-picture-container {
+        height: 200px;
+        .picture-container {
+          height: 100%;
+          .project-picture {
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 50%;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  // Developer Around Post Model
+  .developer-around-post {
+    .post-top-info {
+      .developer-number {
+        text-align: center;
+        span {
+          font-weight: bold;
+          font-size: 30px;
+        }
+      }
+      .post-top-details {
+        .post-title {
+          p {
+            margin-top: 3px;
+            margin-top: 11px;
+            font-size: 18px;
+            margin-bottom: 0px;
+            line-height: 18px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .post-content {
+      .developers-list {
+        margin-bottom: 0px;
+        .developer {
+          float: left;
+          width: 80px;
+          height: 95px;
+          text-align: center;
+          margin: 10px 10px 0 0;
+          &:first-child {
+            margin-left: 0px;
+          }
+          &:last-child {
+            margin-right: 0px;
+          }
+          .developer-pic {
+            width: 50px;
+            height: 50px;
+            display: block;
+            background-size: cover;
+            background-position: 50% 50%;
+            border-radius: 50%;
+            border: 2px solid $mainColor;
+            margin: 0 auto;
+          }
+          .developer-name {
+            margin-top: 5px;
+            margin-bottom: 0px;
+            text-align: center;
+            a {
+              color: $mainColor;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // User comment Post Model
+  .user-comment-post {
+    .post-content {
+      .description {
+        font-weight: bold;
+        .project-link {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .home-page {
+    // User Project Post Model
+    .user-project-post {
+      .post-content {
+        .project-picture-container {
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+

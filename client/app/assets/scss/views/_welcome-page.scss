@@ -1,0 +1,382 @@
+.welcome-page {
+  .section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .inner-section {
+    }
+    &.second, &.fourth {
+      background-color: #333333;
+    }
+
+    &.first {
+      display: table;
+      width: 100%;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      background-size: cover;
+      background-image:url('../../assets/pictures/welcome/background/head-bg.jpg');
+      position: relative;
+      .inner-section {
+        display: table-cell;
+        vertical-align: middle;
+        overflow: hidden;
+        h1, h2 {
+          color: white;
+          text-align: center;
+        }
+        h1 {
+          font-size: 100px;
+        }
+        h2 {
+          font-size: 20px;
+        }
+        .logo {
+          color: $secondaryColor;
+        }
+        .scroll-container {
+          position: absolute;
+          bottom: 10px;
+          left: 50%;
+          margin-left: -80px;
+          width: 160px;
+          text-align: center;
+          .picture-arrow {
+            font-size: 25px;
+            color: white;
+          }
+          p {
+            color: white;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+
+    &.second {
+      .inner-section {
+        h1, h2, h3 {
+          color: white;
+          // width: 55%;
+          display: block;
+          float: left;
+        }
+        .picture-container {
+          position: relative;
+          height: 200px;
+          .picture {
+            position: absolute;
+            max-width: 200px;
+            width: 100%;
+            &:after {
+              background-position: 50% 50%;
+              background-size: cover;
+              content: "";
+              display: block;
+              width: 100%;
+              padding-top: 100%;
+              border-radius: 50%;
+              border: 2px solid #FFF;
+            }
+            &.user-1 {
+              top: -50px;
+              right: 0px;
+              &:after {
+                background-image:url('../../assets/pictures/welcome/user/user-1.jpg');
+              }
+            }
+            &.user-2 {
+              bottom: -50px;
+              left: 0px;
+              &:after {
+                background-image:url('../../assets/pictures/welcome/user/user-2.jpg');
+              }
+            }
+          }
+          .tech {
+            background-position: 50% 50%;
+            background-size: cover;
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #FFF;
+            &.angular {
+              background-image:url('../../assets/pictures/welcome/tech/AngularJS.jpg');
+              top: 0%;
+              left: 10%;
+            }
+            &.c {
+              background-image:url('../../assets/pictures/welcome/tech/C.jpg');
+              bottom: 0%;
+              right: 0%;
+            }
+            &.html {
+              background-image:url('../../assets/pictures/welcome/tech/HTML.jpg');
+              top: -20%;
+              right: -5%;
+            }
+            &.mongo {
+              background-image:url('../../assets/pictures/welcome/tech/mongoDB.jpg');
+              bottom: -30%;
+              left: 5%;
+            }
+            &.sass {
+              background-image:url('../../assets/pictures/welcome/tech/Sass.jpg');
+              top: 75%;
+              left: 35%;
+            }
+            &.python {
+              background-image:url('../../assets/pictures/welcome/tech/Python.jpg');
+              top: 50%;
+              left: 50%;
+            }
+            &.ruby {
+              background-image:url('../../assets/pictures/welcome/tech/Ruby.jpg');
+              top: 90%;
+              left: 60%;
+            }
+            &.swift {
+              background-image:url('../../assets/pictures/welcome/tech/Swift.jpg');
+              top: -15%;
+              left: 30%;
+            }
+          }
+        }
+      }
+    }
+
+    &.third {
+      .inner-section {
+        position: relative;
+        h1, h2 {
+          text-align: right;
+        }
+        .talk {
+          position: absolute;
+          background-position: 50% 50%;
+          background-size: cover;
+          width: 130px;
+          height: 100px;
+          &.left-talk {
+            background-image:url('../../assets/pictures/welcome/chat-bubble-2.png');
+            top: -30%;
+            left: 15%;
+          }
+          &.right-talk {
+            background-image:url('../../assets/pictures/welcome/chat-bubble-1.png'); 
+            bottom: -35%;
+            left: 5%;
+          }
+        }
+      }
+    }
+
+    &.fourth {
+      .inner-section {
+        position: relative;
+        h1, h2 {
+          text-align: center;
+          color: #FFF;
+        }
+        .share {
+          width: 100px;
+          height: 100px;
+          position: absolute;
+          background-position: 50% 50%;
+          background-size: cover;
+          background-image:url('../../assets/pictures/welcome/share.png'); 
+          top: -30%;
+          right: 0%;
+        }
+      }
+    }
+
+    &.fifth {
+      .inner-section {
+        position: relative;
+        text-align: center;
+        h1, h3 {
+          text-align: center;
+          color: #000;
+        }
+        h1, h3 {
+          margin-bottom: 30px;
+        }
+        h3 {
+          &.first{
+            margin-bottom: 0px;
+          }
+          &.second{
+            margin-top: 5px;
+          }
+        }
+        .phone {
+          max-width: 100%;
+          margin:0 auto;
+        }
+      }
+    }
+
+  }
+}
+@media (max-width: 991px) {
+  .welcome-page {
+    .section {
+      &.second {
+        .inner-section {
+          .picture-container {
+            .picture {
+              width: 150px;
+              &.user-1 {
+                top: -20px;
+                right: 0px;
+              }
+              &.user-2 {
+                bottom: -50px;
+                left: 0px;
+              }
+            }
+            .tech {
+              &.angular {
+                top: 20%;
+                left: 10%;
+              }
+              &.c {
+                bottom: 0%;
+                right: 0%;
+              }
+              &.html {
+                top: -20%;
+                right: 5%;
+              }
+              &.mongo {
+                bottom: -50%;
+                left: 5%;
+              }
+              &.sass {
+                top: 85%;
+                left: 35%;
+              }
+              &.python {
+                top: 35%;
+                left: 50%;
+              }
+              &.ruby {
+                top: 100%;
+                left: 60%;
+              }
+              &.swift {
+                top: -15%;
+                left: 30%;
+              }
+            }
+          }
+        }
+      }
+      &.third {
+        .inner-section {
+          .talk {
+            width: 100px;
+            height: 80px;
+            &.left-talk {
+              top: -30%;
+              left: 20%;
+            }
+            &.right-talk {
+              top: -20%;
+              left: 5%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .welcome-page {
+    .section {
+      &.second {
+        .inner-section {
+          .picture-container {
+            margin-top: 60px;
+            margin-bottom: 30px;
+            .tech {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .welcome-page {
+    .section {
+      &.first {
+        .inner-section {
+          h1 {
+            font-size: 50px; 
+          }
+        }
+      }
+      &.fourth {
+        .inner-section {
+          .share {
+            width: 70px;
+            height: 70px;
+            top: -35%;
+            right: 0%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .welcome-page {
+    .section {
+      &.second {
+        .inner-section .picture-container .tech {
+          &.sass {
+            top: 100%;
+          }
+          &.ruby {
+            top: 110%;
+          }
+        }
+      }
+      &.third {
+        .inner-section {
+          .talk {
+            width: 100px;
+            height: 80px;
+            &.left-talk {
+              top: 100%;
+              left: 20%;
+            }
+            &.right-talk {
+              top: -40%;
+              left: 60%;
+            }
+          }
+        }
+      }
+      &.fifth {
+        .inner-section {
+          h1 {
+            font-size: 30px;
+          }
+          h3 {
+            font-size: 19px;
+          }
+        }
+      }
+    }
+  }
+}
+
+

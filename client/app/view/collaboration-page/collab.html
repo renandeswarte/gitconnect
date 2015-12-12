@@ -1,0 +1,126 @@
+<div class="container page collaboration-page fadein-effect">
+  <div class="row team-details">
+    <div class="col-xs-12">
+      <div class="top-container cf">
+        <h1>{{projectInfo.name}} - Collab Page</h1>
+        <button type="button" class="btn btn-danger project-actions" ng-click="confirmDelete()">
+          <i class="fa fa-ban"></i> Delete your Project
+        </button>
+        <button ng-click="publish('lg')" class='btn btn-primary project-actions publish-action'>Publish</button>
+        <button type="button" class="edit btn btn-default project-actions" ng-click="editResources()">
+          <i class="fa fa-pencil"></i> Edit</button>
+      </div>
+      <ul class="team-members-list">
+        <li class="team-member" ng-repeat="user in projectUsers">
+          <a href="#/user/{{user.username}}" class="team-member-pic" style="background-image:url({{user.avatar_url}})"></a>
+          <p class="team-member-name"><a href="#/user/{{user.username}}">{{user.name}}</a></p>
+        </li>
+        <li>
+          <button type="button" data-toggle="modal" class="add-collaborator" data-target="#myModal" ng-click="loadConnections()" uib-tooltip="{{collaboratorTooltip}}"><i class="fa fa-plus"></i></button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row links">
+    <div class="col-xs-12">
+      <div class="link-header">
+        <h2>Resources</h2>
+      </div>
+      <ul class="row">
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-github fa-2x fa-fw link-icon"></i>
+          <span class="link-options">
+            <a href={{projectInfo.projectRepo}} ng-class="{'filled-link-info': projectInfo.projectRepo !== '', 'empty-link-info': projectInfo.projectRepo === ''}">Project Repo</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-jsfiddle fa-2x fa-fw link-icon"></i>
+          <span class="link-options">
+            <a href={{projectInfo.projectSnippet}} ng-class="{'filled-link-info': projectInfo.projectSnippet !== '', 'empty-link-info': projectInfo.projectSnippet === ''}">Code Snippet</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-cloud fa-2x fa-fw link-icon"></i> 
+          <span class="link-options">
+            <a href={{projectInfo.cloudStorage}} ng-class="{'filled-link-info': projectInfo.cloudStorage !== '', 'empty-link-info': projectInfo.cloudStorage === ''}">Cloud Storage</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-trello fa-2x fa-fw link-icon"></i>
+          <span class="link-options">
+            <a href={{projectInfo.scrumBoard}} ng-class="{'filled-link-info': projectInfo.scrumBoard !== '', 'empty-link-info': projectInfo.scrumBoard === ''}">Scrum Board</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-link fa-2x fa-fw link-icon"></i> 
+          <span class="link-options">
+            <a href={{projectInfo.projectWebsite}} ng-class="{'filled-link-info': projectInfo.projectWebsite !== '', 'empty-link-info': projectInfo.projectWebsite === ''}">Project Website</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+        <li class="col-xs-12 col-sm-4">
+          <i class="fa fa-database fa-2x fa-fw link-icon"></i>
+          <span class="link-options">
+            <a href={{projectInfo.database}} ng-class="{'filled-link-info': projectInfo.database !== '', 'empty-link-info': projectInfo.database === ''}">Database</a>
+            <a href="" class="add-link" ng-click="editResources()"></a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row team-messages">
+    <div class="col-xs-12">
+      <h2>Messages</h2>
+      <ul class="list-group">
+        <li class="list-group-item cf" ng-repeat="message in messages">
+          <a href="" class="team-member-chat-picture" style="background-image:url({{message.avatar}})"></a>
+          <div class="message-content">
+            <span class="username">{{message.username}}</span>
+            <span class="date">{{ message.date | date: 'short' }}</span>
+            <p class="message-content-body">
+              {{message.message}}
+            </p>
+          </div>
+        </li>
+      </ul>
+      <form ng-submit="messageSubmit()">
+        <div class="input-group input-group-lg">
+        <input type="text" class="form-control collaboration-text-input" ng-model="text" aria-describedby="sizing-addon1">
+          <span class="input-group-btn" id="sizing-addon1">
+            <button class="btn btn-primary message-send" type="button" ng-click="messageSubmit()">Send</button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--Add Collaborator Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Collaborator</h4>
+        </div>
+        <div class="modal-body add-collaborator">
+          <input ng-model="collabForm" type="text" ng-model="selected" uib-typeahead="user as user.name for user in connections | filter:$viewValue | limitTo:8" class="form-control" typeahead-no-results="noResults" typeahead-on-select="addCollaborator($item, $model, $label)">
+          <ul class="collaborators-list">
+            <li class="collaborator" ng-repeat="user in newProjectCollaborators track by $index" ng-click="removeCollaborator($index)">
+              {{user}} <i class="fa fa-times-circle"></i>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="submitCollaborators()">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

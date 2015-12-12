@@ -1,2 +1,60 @@
-<h1>Homepage</h1>
+<div class="container page home-page fadein-effect">
 
+  <!-- Developer around Post  *** START *** -->
+  <div class="row post user-project-post" ng-hide="hasDevAround">
+    <h3 class="col-xs-12 no-data">There is no one available in your area right now</h3>
+  </div>
+  <div ng-show="hasDevAround" class="row post developer-around-post">
+    <div class="col-xs-12 post-top-info">
+      <div class="post-thumbnail developer-number">
+        <span>{{devAroundCount}}</span>
+      </div>
+      <div class="post-top-details">
+        <div class="post-title">
+          <p>Developers around you</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 post-content">
+      <ul class="developers-list cf">
+        <li class="developer" ng-repeat="dev in devAround"  ng-init="init()">
+          <a href="#/user/{{dev.username}}" class="developer-pic" style="background-image:url('{{dev.avatar_url}}')"></a>
+          <p class="developer-name"><a href="#/user/{{dev.username}}">{{dev.name}}</a></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Developer Around  *** END *** -->
+
+  <!-- User Post  *** START *** -->
+  <div class="row post user-project-post" ng-hide="hasNewProjects">
+    <h3 class="col-xs-12 no-data">Your network has no recent activities</h3>
+  </div>
+  <div class="row post user-project-post" ng-show="hasNewProjects" ng-repeat="project in newProjects | orderBy:'-'">
+    <div class="col-xs-12 post-top-info">
+      <div class="post-thumbnail user-pic">
+        <a href="#/user/{{project.x.username}}" alt="" style="background-image:url('{{project.x.avatar_url}}')"></a>
+      </div>
+      <div class="post-top-details">
+        <div class="post-title user-name">
+          <a href="#/user/{{project.x.username}}">{{project.x.name}}</a>
+        </div>
+        <div class="post-subdetails">
+          <div class="subdetail time">
+            <i class="fa fa-clock-o"></i> {{project.y.publishDate | date:'mediumDate'}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 post-content">
+      <p class="description">
+        {{project.x.name}} just posted a new project: <a href="#/project/{{project.y.projectId}}" class="project-link">{{project.y.name}}</a>
+      </p>
+      <div class="project-picture-container">
+        <a href="#/project/{{project.y.projectId}}" class="project-picture" style="background-image:url('{{project.y.picture}}')"></a>
+      </div>
+    </div>
+  </div>
+  <!-- User Post  *** END *** -->
+
+</div>

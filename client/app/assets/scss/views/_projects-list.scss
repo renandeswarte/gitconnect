@@ -1,0 +1,154 @@
+.projects-page {
+
+  .project-list-search {
+    margin-bottom: 10px;
+  }
+
+  .time-range-form {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    .btn {
+      margin: 0px 20px;
+      background-color: $lightGreyColor;
+      color: #FFF;
+      &.active {
+        background-color: $mainColor;
+      }
+    }
+    @media (max-width: 480px) {
+      .btn {
+        margin: 0 10px;
+      }
+    }
+    @media (max-width: 400px) {
+      .btn {
+        font-size: 12px;
+        margin: 2px;
+      }
+    }
+  }
+
+  .projects-list {
+    overflow: hidden;
+    .project-post {
+      position: relative;
+      display:block;
+      width: 100%;
+      min-height: 160px;
+      padding: 10px;
+      border-bottom: 1px dotted $lightGreyColor;
+      transition: background 0.2s ease;
+      cursor: pointer;
+      &:hover {
+        background: #f7f7fa;
+      }
+      .top-container-post {
+        display: table;
+        .vote-block {
+          display: table-cell;
+          width: 55px;
+          max-width: 55px;
+          min-width: 55px;
+          text-align: center;
+          vertical-align: middle;
+          font-size: 18px;
+          span {
+            display: block;
+          }
+        }
+        .project-thumbnail {
+          display: table-cell;
+          background-size: cover;
+          background-position: 50% 50%;
+          width: 180px;
+          max-width: 180px;
+          min-width: 180px;
+          height: 140px;
+          border-radius: 3px;
+          margin-top: 10px;
+        }
+        .post-text {
+          display: table-cell;
+          vertical-align: middle;
+          padding-left: 20px;
+          .date-and-comments {
+            font-size: 14px;
+            margin-bottom: 20px;
+            .comments {
+              padding-left: 10px;
+            }
+          }
+          .project-name {
+            font-size: 18px;
+            line-height: 18px;
+            color: $darkGreyColor;
+          }
+          .project-short-description {
+            margin-top: 5px;
+            margin-bottom: 0px;
+          }
+        }
+        .post-user-info {
+          padding-right: 10px;
+          position: absolute;
+          z-index: 99;
+          right: 0px;
+          top: 60px;
+          .user-image {
+            border-radius: 50%;
+            background-size: cover;
+            display: inline-block;
+            margin-left: 20px;
+            height: 40px;
+            width: 40px;
+          }
+        }
+      }
+      .project-thumbnail-mobile,.post-user-info-mobile  {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-page {
+    .projects-list {
+      .project-post {
+        .top-container-post {
+          .project-thumbnail {
+            display: none;
+          }
+          .post-user-info {
+            display: none;
+          }
+        }
+        .post-user-info-mobile {
+          display: block;
+          padding-left: 70px;
+          .user-image {
+            border-radius: 50%;
+            background-size: cover;
+            display: inline-block;
+            margin: 10px 10px 5px 0px;
+            height: 40px;
+            width: 40px;
+          }
+        }
+        .project-thumbnail-mobile {
+          margin-top: 5px;
+          display: block;
+          .picture {
+            display: block;
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: 50% 50%;
+          }
+        }
+      }
+    }
+  }
+}
+

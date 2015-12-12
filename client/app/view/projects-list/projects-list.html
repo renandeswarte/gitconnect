@@ -1,0 +1,59 @@
+<div class="container page projects-page fadein-effect">
+  <div class="projects-container">
+
+    <div class="row">
+      <div class="col-xs-12 time-range-form">
+        <button class="btn" ng-class="{'active':tab === 'newest'}" ng-click="tab = 'newest'">Newest</button>
+        <button class="btn" ng-class="{'active':tab === 'weekly'}" ng-click="tab = 'weekly'">Top Weekly</button>
+        <button class="btn" ng-class="{'active':tab === 'overall'}" ng-click="tab = 'overall'">Top Overall</button>
+      </div>
+    </div>
+    <div class="row project-list-search">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <input type="text" class="form-control" ng-model='searchText' placeholder="Search a project">
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-list">
+
+    <div class="project-post fadein-effect" ng-repeat="project in projects | weeklyFilter:(tab === 'weekly' || tab === 'newest') | filter:searchText | orderBy:orderByFn()" ng-click="projectPageRedirect(project.projectId)">
+      <div class="top-container-post">
+        <div class="vote-block" ng-click="$event.stopPropagation(); increment(project, projects.indexOf(project))">
+          <span class="project-vote-button">
+            <i class="fa fa-caret-up fa-lg" style="cursor:pointer;"></i>
+          </span>
+          <span class="project-vote-count truncate">
+            {{project.upVote}}
+          </span>
+        </div>
+        <div class="project-thumbnail" style="background-image:url({{project.picture}})" ng-click="projectPageRedirect(project.projectId)">
+        </div>
+        <div class="post-text">
+          <div class="date-and-comments">
+            <span class="post-date"><i class="fa fa-clock-o"></i> {{project.publishDate | date:'mediumDate'}}</span>
+            <span class="post-comments"><i class="fa fa-comments-o fa-lg comments"></i> {{project.commentCount}}</span>
+          </div>
+          <div>
+            <a href="#/project/{{project.projectId}}" class="project-name ">{{project.name}}</a>
+            <p class="project-short-description ">{{project.shortDesc | limitTo: 60}} ...</p>
+          </div>
+        </div>
+        <div class="post-user-info">
+          <a href="#/user/{{developer.username}}" class="user-image" ng-repeat="developer in project.teams" style="background-image: url({{developer.avatar_url}})">
+          </a>
+        </div>
+      </div>
+      <div class="post-user-info-mobile">
+        <a href="#/user/{{developer.username}}" class="user-image" ng-repeat="developer in project.teams" style="background-image: url({{developer.avatar_url}})">
+        </a>
+      </div>
+      <div class="project-thumbnail-mobile">
+        <div class="picture" style="background-image:url({{project.picture}})" ng-click="projectPageRedirect(project.projectId)">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

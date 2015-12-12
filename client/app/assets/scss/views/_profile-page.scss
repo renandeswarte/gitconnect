@@ -1,0 +1,322 @@
+.profile-page {
+  .user-details-container {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted $lightGreyColor;
+    .user-details {
+      .user-pic {
+        float: left;
+        a {
+          display: inline-block;
+          background-image:url('../../assets/pictures/users/default-user.jpg');
+          background-size: cover;
+          background-position: 50% 50%;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          border: 2px solid $mainColor;
+        }
+      }
+      .user-subdetails {
+        float: left;
+        padding-left: 15px;
+        .saved-rating {
+          color: #e3cf7a;
+        }
+        .rating {
+          display: inline-block;
+          unicode-bidi: bidi-override;
+          direction: rtl;
+          font-size: 170%;
+        }
+        // >: the child combinator
+        .rating > span, .posted-rating > span {
+          display: inline-block;
+          position: relative;
+        }
+        .rating > span:hover:before,
+        .rating > span:hover ~ span:before,
+        span.rated:before,
+        span.rated ~ span:before {
+          color: gold;
+          content: "\2605";
+          position: absolute;
+        }
+        .user-name {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 5px;
+          color: $darkGreyColor;
+        }
+        .subdetail {
+          &.time {
+            font-size: 14px;
+            margin-top: 6px;
+          }
+          &.ratings {
+            font-size: 20px;
+            margin-top: 5px;
+            .fa-star {
+              color: gold;
+            }
+          }
+        }
+      }
+      .update-profile {
+        width: 100%;
+        display: block;
+        float: left;
+        margin-top: 10px;
+        color: $mainColor;
+        font-weight: bold;
+      }
+      .delete-profile-link {
+        float: left;
+        margin-top: 10px;
+        button {
+          font-size: 12px;
+        }
+      }
+    }
+    .user-status {
+      position: relative;
+      text-align: right;
+      .title {
+        position: relative;
+        top: 3px;
+        line-height: 14px;
+        font-weight: bold;
+        margin-right: 5px;
+      }
+      &.interact {
+        &.message {
+          .btn {
+            background-color: $blueColor !important;
+          }
+        }
+        .btn {
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+        .connect {
+          width: 85px;
+          height: 30px;
+          padding: 0px 10px;
+        }
+      }
+    }
+  }
+
+  .user-profile-block {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted $lightGreyColor;
+    .details-container {
+      h3 {
+        margin-top: 0px;
+        color: $darkGreyColor;
+      }
+      .list {
+        ul {
+          li {
+            padding-top: 10px;
+            a {
+              border-bottom: 1px solid #AAA;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+    &.user-languages-container {
+      .language-details {
+        .language-list {
+          ul {
+            li {
+              position: relative;
+              .tech-icon {
+                width: 20px;
+                height: 20px;
+                display: inline-block;
+                background-size: cover;
+                position: absolute;
+                top: 9px;
+              }
+              .tech-name {
+                font-size: 14px;
+                padding-left: 25px;
+                line-height: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.user-projects-container {
+      .projects-details {
+        .project-list {
+          .project {
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            padding-bottom:10px;
+            .inner-container {
+              transition: all 0.3s ease;
+              padding: 10px;
+              border:1px solid $lightGreyColor;
+              // border-radius: 3px;
+              overflow: hidden;
+              -moz-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3);
+              -webkit-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3);
+              box-shadow: 0 3px 3px 0 rgba(0,0,0,0.3);
+              .project-name {
+                border: none;
+                padding:10px 0px;
+                font-weight: bold;
+                color: #000;
+              }
+              .project-picture {
+                height: 200px;
+                background-size: cover;
+                background-position: 50% 50%;
+                border-radius: 3px;
+              }
+              .description {
+                overflow: hidden;
+                height: 60px;
+                margin-top: 10px;
+                margin-bottom: 0px;
+              }
+            }
+            &:hover {
+              transform: translateY(3px);
+              .inner-container {
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.user-recents-container {
+      .recents-details {
+        .recent {
+          padding-top: 20px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid #AAA;
+          p {
+            margin-top: 5px;
+            margin-bottom: 0px;
+            &.subtitle {
+              font-weight: bold;
+            }
+          }
+          &.participation {
+          }
+          &.comments {
+          }
+          &.project {
+            .project-post {
+              margin-top: 20px;
+              .picture-container {
+                height: 200px;
+                a {
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  background-size:cover;
+                  background-position: 50% 50%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .profile-page {
+    .user-details-container {
+      text-align: center;
+      .user-details {
+        .user-pic {
+          display: block;
+          width: 100%;
+        }
+        .user-subdetails {
+          width: 100%;
+          padding-left: 0px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .delete-profile-link {
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
+      }
+      .user-status {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.profile-page {
+  .user-status {
+    .switch {
+      display: inline-block;
+      .cmn-toggle {
+        position: absolute;
+        margin-left: -9999px;
+        visibility: hidden;
+      }
+      .cmn-toggle + label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+      }
+      .cmn-toggle-round + label {
+        padding: 2px;
+        width: 60px;
+        height: 30px;
+        background-color: #dddddd;
+        border-radius: 60px;
+      }
+      .cmn-toggle-round + label:before,
+      .cmn-toggle-round + label:after {
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+      }
+      .cmn-toggle-round + label:before {
+        right: 1px;
+        background-color: $redColor;
+        border-radius: 60px;
+        transition: background 0.4s;
+      }
+      .cmn-toggle-round + label:after {
+        width: 28px;
+        margin-left: 30px;
+        background-color: #fff;
+        border-radius: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      &.turn-off {
+        .cmn-toggle-round + label:before {
+          background-color: $greenColor;
+        }
+        .cmn-toggle-round + label:after {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}
+
+

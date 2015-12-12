@@ -1,0 +1,146 @@
+<div class="container page profile-page fadein-effect" ng-init="init(); ratings()">
+
+  <div class="row user-details-container">
+    <div class="col-xs-12 col-sm-8 user-details">
+      <div class="post-thumbnail user-pic">
+        <a href="#/user/{{user.username}}" alt="" style="background-image:url({{user.avatar_url}})"></a>
+      </div>
+      <div class="user-subdetails">
+        <a href="#/user/{{user.username}}" class="user-name">{{ user.name }} ({{user.username}})</a>
+        <div class="subdetail time">
+          {{ user.location }}
+        </div>
+        <div class="subdetail ratings" ng-show="!ratingBool">
+          <span id="stars-existing" class="stars"></span>
+        </div>
+      </div>
+      <a href="#/profile-update/{{user.username}}" class="update-profile" ng-show='ownership'>
+        <i class="fa fa-cog"></i> Update your profile
+      </a>
+      <div class="delete-profile-link" ng-show='ownership'>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProfileModal">
+          <i class="fa fa-ban"></i> Delete your profile
+        </button>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 user-status" ng-show='ownership' ng-init="statusCheck()">
+
+      <span class="title">Available</span>
+      <div ng-show="!availability" ng-click="availabilityOn()" class="switch turn-on">
+        <div id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round"></div>
+        <label for="cmn-toggle-1">On</label>
+      </div>
+
+      <div ng-show="availability" ng-click="availabilityOff()" class="switch turn-off">
+        <div id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round"></div>
+        <label for="cmn-toggle-1">On</label>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-4 user-status interact" ng-init="statusCheck()" ng-show="!ownership">
+      <button type="button" class="btn btn-primary connect" ng-click="sendConnectionRequests(); showConnectButton = 1" ng-hide="showConnectButton">Connect</button>
+      <button class="btn btn-danger connect" ng-show="showConnectButton" disabled><i class="fa fa-check-circle"></i></button>
+    </div>
+
+    <!-- Button trigger modal for Message Sending-->
+    <div class="col-xs-12 col-sm-4 user-status interact message" ng-hide="ownership" ng-init="statusCheck()">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+       Send a message
+     </button>
+
+     <!-- Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Message to {{user.username}}</h4>
+           </div>
+           <div class="modal-body">
+             <form class="wat">
+               <div class="form-group">
+                 <textarea class="form-control" rows="5" name="sendingMessage" id="sendingMessage" placeholder="type your message here" ng-model="message"></textarea>
+               </div>
+             </form>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-primary" ng-click="sendMessage(user.username)" data-dismiss="modal">Send</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <!-- end of trigger modal for Message Sending -->
+ </div>
+
+ <div class="row user-bio-container user-profile-block">
+  <div class="bio-detail details-container">
+    <h3 class="col-xs-12">About me</h3>
+    <div class="bio col-xs-12">
+      <p>{{user.bio}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="row user-projects-container user-profile-block">
+  <div class="projects-details details-container">
+    <h3 class="col-xs-12">Projects</h3>
+    <p class="no-projects col-xs-12" ng-hide="user.projects.length !== 0">No projects yet :(</p>
+
+    <div class="project-list list">
+      <ul>
+        <li class="project col-xs-12 col-sm-4" ng-repeat="project in user.projects" ng-click="redirect(project.projectId)" style="cursor: pointer;">
+          <div class="inner-container">
+            <a href="" class="project-name truncate">{{project.name}}</a>
+            <div class="project-picture" style="background-image:url('{{project.picture}}')"></div>
+            <p class="description">{{project.shortDesc}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="row user-languages-container user-profile-block">
+  <div class="language-details details-container">
+    <h3 class="col-xs-12">Languages</h3>
+    <p class="no-projects col-xs-12" ng-hide="user.languages.length">You have no languages :(</p>
+
+    <div class="language-list list">
+      <ul>
+        <li class="col-xs-6 col-sm-3" ng-repeat="language in user.languages">
+          <span class="tech-icon" style="background-image:url('http://mks-thesis-project.s3-us-west-1.amazonaws.com/pictures/techs/{{language.nameEncoded}}.jpg')"></span>
+          <span class="tech-name">{{language.name}}</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="row user-recents-container user-profile-block">
+  <div class="recents-details details-container">
+    <!-- <h3 class="col-xs-12">Recent activities</h3> -->
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete Profile</h4>
+      </div>
+      <div class="modal-body">
+        {{user.username}},<br>are you sure you want to delete your profile?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteProfile()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,19 +1,86 @@
-// @import "reset";
-@import "bootstrap";
-@import "font-awesome";
-@import "variables";
+@import "externals/reset";
+@import "externals/bootstrap";
+@import "externals/font-awesome";
+@import "externals/font-face";
+@import "externals/animate";
+@import "externals/swiper";
+@import "tools/variables";
+@import "tools/mixins";
+@import "tools/keyframes-animations";
+@import "views/header";
+@import "views/footer";
+@import "views/welcome-page";
+@import "views/profile-page";
+@import "views/projects-list";
+@import "views/project-page";
+@import "views/homepage";
+@import "views/connect";
+@import "views/socket";
+@import "views/collaboration-page";
+@import "views/requests";
+@import "views/subscription";
+@import "views/contact";
+@import "views/team";
+@import "views/legal";
+@import "views/profile-update";
+@import "views/publish-modal";
+@import "views/my-projects-page";
+@import "views/my-connections";
+@import "views/how-to";
 
 html {
-  background-color: $mainColor;
+  background-color: $bgColor;
   -webkit-font-smoothing: antialiased;
   * {
     font-family:"Lucida Sans Unicode", Helvetica, Arial, sans-serif;
     box-sizing: border-box;
   }
-  button, .btn:focus, .btn, .btn.active {
+  button, .btn:focus, .btn, .btn.active, a {
     outline: 0 !important;
   }
 }
 body {
   background: none;
+}
+
+// Override Global Buttons style
+.btn.active,
+.connect-btn,
+.btn-primary {
+  background-color: $secondaryColor !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+// Style for all pages
+.page {
+  padding-top: 52px;
+}
+
+// Fade effect when page load
+.fadein-effect {
+ @include animationEffect(1s, fadeEffect);
+}
+
+// Text truncate
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Clearfix
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.cf:after {clear: both;}
+.cf {*zoom: 1;}
+
+// Disable techs hover color for mobile
+@media (max-width: 767px) {
+  .tech:hover {
+    background-color: $mainColor !important;
+  }
 }

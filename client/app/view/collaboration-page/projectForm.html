@@ -1,0 +1,68 @@
+<form name="myForm" role="form" class="publish-project">
+  <div class="modal-header cf">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title col-xs-12" id="myModalLabel">Please enter additional information on your form</h4>
+  </div>
+  <div class="modal-body cf">
+    <div class="form-group col-xs-12">
+      <label>Project Name</label>
+      <input type="text" class="form-control" ng-model="projectInfo.name" required>
+      <label>About the project:</label>
+      <textarea type="text" rows="5" class="form-control input-about" ng-model="projectInfo.longDesc" required></textarea>
+      <label>Short decription of the project</label>
+      <input ng-model="projectInfo.shortDesc" type="text" name="shortDesc" class="form-control input-short-desc" ng-maxlength="144">
+      <div role="alert">
+        <span class="error" ng-show="myForm.shortDesc.$error.maxlength">
+                Please do not exceed 144 characters!</span>
+      </div>
+      <label>Project picture</label>
+      <input type="file" id="file_input" fileread="profilePic" class="form-control input-file" required>
+      <div role="alert">
+        <span class="error" ng-show="profilePic.size > 5242880">
+                please upload a pic smaller than 5mb!</span>
+      </div>
+      <label>Project repo link</label>
+      <input type="url" class="form-control input-repo" ng-model="projectInfo.projectRepo" name="repo" required>
+      <div role="alert">
+        <span class="error" ng-show="myForm.repo.$error.url">
+                Not valid url!</span>
+      </div>
+      <label>Project Website</label>
+      <input type="url" class="form-control input-website" ng-model="projectInfo.projectWebsite" name="input" required>
+      <div role="alert">
+        <span class="error" ng-show="myForm.input.$error.url">
+                Not valid url!</span>
+      </div>
+      <!-- Recycled Html from projile-update.html -->
+      <div class="tech-selection">
+        <div class="techs user-selection">
+          <h4>Technologies you used in this project</h4>
+          <ul>
+            <li class="tech fadein-effect" ng-repeat="tech in yourTechList track by $index " data-tech="{{tech}}" ng-click="removeTech(tech, $index)">
+              {{tech}} <i class="fa fa-times-circle"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tech-selection">
+        <div class="techs propositions" ng-init="initialTech()">
+          <h4>Add additional technologies</h4>
+          <label class="search-form">Search:
+            <input type="text" class="tech-search-input" ng-model="searchText">
+          </label>
+          <p ng-show="existed" class="error-addition"> Already added</p>
+          <ul>
+            <li class="tech fadein-effect" ng-repeat="tech in techList | filter:searchText track by $index" data-tech="{{tech}}" ng-click="addTech(tech, $index)">
+              {{tech}} <i class="fa fa-plus-circle"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default cancel-small" ng-click="cancel()">Cancel</button>
+    <button type="submit" class="btn btn-primary sign-small project-publish-submit" ng-click="ok()">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">To confirm delete please enter your github username</h4>
+</div>
+<div class="modal-body">
+    <form name="myForm" ng-submit="ok()">
+        <input type="text" ng-model="userInput" class="form-control">
+        <button ng-disabled="userInput !== username" hidden>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-danger sign-small" ng-disabled="userInput !== username" ng-click="ok()">Delete</button>
+    <button class="btn btn-default cancel-small" ng-click="cancel()">Cancel</button>
+</div>
